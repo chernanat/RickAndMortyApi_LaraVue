@@ -5,10 +5,12 @@
             <div v-if="episodes" class="text-center">
                 
                 <h3 class="text-success">Episodes Of {{character_data.name}}</h3>
-                <div v-for="(episode,index) in episodes" :key=index>
+                <div v-for="(episode,index) in episodes_api" :key=index>
                     <div class="alert alert-dismissible alert-primary">
-                        <h4 class="alert-heading text-secondary">Episode Name: </h4>
-                        <p class="mb-0 text-danger"><b>Link: </b> <a :href='episode' class="alert-link">{{episode}}</a></p>
+                        <h4 class="alert-heading text-secondary">Episode Name: {{episode.name}} </h4>
+                        <p><b>Episode Code:</b> {{episode.episode}}</p>
+                        <p><b>Launch Date:</b> {{episode.air_date}}</p>
+                        <p class="mb-0 text-danger"><b>Link: </b> <a :href='episode.url' class="alert-link">{{episode.url}}</a></p>
                     </div>
                 </div>
                 <div>
@@ -20,7 +22,7 @@
                 <div class="col-md card">
                     <div class="col-sm text-center">
                         <img v-if="character.image" :src="character.image" alt="Card image cap" style="width: 15rem;">
-                        <h3 class="card-title">Name: <b>{{character.name}}</b></h3>
+                        <h3 class="card-title">Character Name: <b>{{character.name}}</b></h3>
                         <h4 class="card-subtitle mb-2">Especie: <b>{{character.species}}</b></h4>
                         <h4 class="card-subtitle mb-2">Status: <b>{{character.status}}</b></h4>
                         <h4 class="card-subtitle mb-2">Gender: <b>{{character.gender}}</b></h4>
@@ -58,6 +60,7 @@ export default {
             url_characters: '',
             characters: {},
             episodes: null,
+            episodes_api: [],
             character_data: {
                 name: null,
             },
@@ -91,8 +94,17 @@ export default {
                 console.log(err);
             })
         },
-        getEpisodes(character){  
+        async getEpisodes(character){
+            this.episodes = [];  
             this.episodes = character.episode;
+            for (let i = 0; i < this.episodes.length; i++) {
+                await axios.get(this.episodes[i]).then(res=>{
+                    console.log('h');
+                    this.episodes_api[i] = res.data
+                }).catch(err=>{
+                    console.log(err);
+                })
+            }
             this.character_data.name = character.name
         },
         nextPage(){
@@ -103,6 +115,7 @@ export default {
         },
         close(){
             this.episodes = null;
+            this.episodes_api = [];
         }
     }
 }

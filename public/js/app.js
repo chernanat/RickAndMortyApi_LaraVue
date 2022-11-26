@@ -32,6 +32,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       url_characters: '',
       characters: {},
       episodes: null,
+      episodes_api: [],
       character_data: {
         name: null
       },
@@ -94,8 +95,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     getEpisodes: function getEpisodes(character) {
-      this.episodes = character.episode;
-      this.character_data.name = character.name;
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var _loop, i;
+        return _regeneratorRuntime().wrap(function _callee3$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _this3.episodes = [];
+                _this3.episodes = character.episode;
+                _loop = /*#__PURE__*/_regeneratorRuntime().mark(function _loop(i) {
+                  return _regeneratorRuntime().wrap(function _loop$(_context3) {
+                    while (1) {
+                      switch (_context3.prev = _context3.next) {
+                        case 0:
+                          _context3.next = 2;
+                          return axios__WEBPACK_IMPORTED_MODULE_2__["default"].get(_this3.episodes[i]).then(function (res) {
+                            console.log('h');
+                            _this3.episodes_api[i] = res.data;
+                          })["catch"](function (err) {
+                            console.log(err);
+                          });
+                        case 2:
+                        case "end":
+                          return _context3.stop();
+                      }
+                    }
+                  }, _loop);
+                });
+                i = 0;
+              case 4:
+                if (!(i < _this3.episodes.length)) {
+                  _context4.next = 9;
+                  break;
+                }
+                return _context4.delegateYield(_loop(i), "t0", 6);
+              case 6:
+                i++;
+                _context4.next = 4;
+                break;
+              case 9:
+                _this3.character_data.name = character.name;
+              case 10:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     },
     nextPage: function nextPage() {
       this.getCharacters(this.pagination.next);
@@ -105,6 +152,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     close: function close() {
       this.episodes = null;
+      this.episodes_api = [];
     }
   }
 });
@@ -167,21 +215,21 @@ var render = function render() {
     staticClass: "text-center"
   }, [_c("h3", {
     staticClass: "text-success"
-  }, [_vm._v("Episodes Of " + _vm._s(_vm.character_data.name))]), _vm._v(" "), _vm._l(_vm.episodes, function (episode, index) {
+  }, [_vm._v("Episodes Of " + _vm._s(_vm.character_data.name))]), _vm._v(" "), _vm._l(_vm.episodes_api, function (episode, index) {
     return _c("div", {
       key: index
     }, [_c("div", {
       staticClass: "alert alert-dismissible alert-primary"
     }, [_c("h4", {
       staticClass: "alert-heading text-secondary"
-    }, [_vm._v("Episode Name: ")]), _vm._v(" "), _c("p", {
+    }, [_vm._v("Episode Name: " + _vm._s(episode.name) + " ")]), _vm._v(" "), _c("p", [_c("b", [_vm._v("Episode Code:")]), _vm._v(" " + _vm._s(episode.episode))]), _vm._v(" "), _c("p", [_c("b", [_vm._v("Launch Date:")]), _vm._v(" " + _vm._s(episode.air_date))]), _vm._v(" "), _c("p", {
       staticClass: "mb-0 text-danger"
     }, [_c("b", [_vm._v("Link: ")]), _vm._v(" "), _c("a", {
       staticClass: "alert-link",
       attrs: {
-        href: episode
+        href: episode.url
       }
-    }, [_vm._v(_vm._s(episode))])])])]);
+    }, [_vm._v(_vm._s(episode.url))])])])]);
   }), _vm._v(" "), _c("div", [_c("input", {
     staticClass: "btn btn-success mt-2",
     attrs: {
@@ -211,7 +259,7 @@ var render = function render() {
       }
     }) : _vm._e(), _vm._v(" "), _c("h3", {
       staticClass: "card-title"
-    }, [_vm._v("Name: "), _c("b", [_vm._v(_vm._s(character.name))])]), _vm._v(" "), _c("h4", {
+    }, [_vm._v("Character Name: "), _c("b", [_vm._v(_vm._s(character.name))])]), _vm._v(" "), _c("h4", {
       staticClass: "card-subtitle mb-2"
     }, [_vm._v("Especie: "), _c("b", [_vm._v(_vm._s(character.species))])]), _vm._v(" "), _c("h4", {
       staticClass: "card-subtitle mb-2"
