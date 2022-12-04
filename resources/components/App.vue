@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="text-center">   
-                        <input @click="getEpisodes(character)" type="button" value="See Episodes" class="btn btn-success mt-2">
+                        <input @click="getEpisodes(character)" onclick="window.scrollTo(0,0)" type="button" value="See Episodes" class="btn btn-success mt-2">
                     </div>
                     <br>
                 </div>

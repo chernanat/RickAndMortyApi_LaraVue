@@ -556,6 +556,7 @@ var render = function render() {
     }, [_c("input", {
       staticClass: "btn btn-success mt-2",
       attrs: {
+        onclick: "window.scrollTo(0,0)",
         type: "button",
         value: "See Episodes"
       },
