@@ -4,15 +4,9 @@
             <div class="container-fluid">
                 <div v-if="auth.email">
                     <a class="navbar-brand" href="/home">RickAndMortyApi</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
                 </div>
                 <div v-else>
                     <a class="navbar-brand" href="/">RickAndMortyApi</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
                 </div>
 
                 <div id="navbarColor02">

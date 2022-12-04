@@ -684,12 +684,12 @@ var render = function render() {
     attrs: {
       href: "/home"
     }
-  }, [_vm._v("RickAndMortyApi")]), _vm._v(" "), _vm._m(0)]) : _c("div", [_c("a", {
+  }, [_vm._v("RickAndMortyApi")])]) : _c("div", [_c("a", {
     staticClass: "navbar-brand",
     attrs: {
       href: "/"
     }
-  }, [_vm._v("RickAndMortyApi")]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("RickAndMortyApi")])]), _vm._v(" "), _c("div", {
     attrs: {
       id: "navbarColor02"
     }
@@ -697,9 +697,9 @@ var render = function render() {
     staticClass: "navbar-nav me-auto"
   }, [!_vm.auth.email ? _c("li", {
     staticClass: "nav-item"
-  }, [_vm._m(2)]) : _vm._e(), _vm._v(" "), !_vm.auth.email ? _c("li", {
+  }, [_vm._m(0)]) : _vm._e(), _vm._v(" "), !_vm.auth.email ? _c("li", {
     staticClass: "nav-item"
-  }, [_vm._m(3)]) : _vm._e(), _vm._v(" "), _vm.auth.email ? _c("li", {
+  }, [_vm._m(1)]) : _vm._e(), _vm._v(" "), _vm.auth.email ? _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link active btn",
@@ -720,38 +720,6 @@ var render = function render() {
   })])]) : _vm._e()])])])])]);
 };
 var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("button", {
-    staticClass: "navbar-toggler",
-    attrs: {
-      type: "button",
-      "data-bs-toggle": "collapse",
-      "data-bs-target": "#navbarColor02",
-      "aria-controls": "navbarColor02",
-      "aria-expanded": "false",
-      "aria-label": "Toggle navigation"
-    }
-  }, [_c("span", {
-    staticClass: "navbar-toggler-icon"
-  })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("button", {
-    staticClass: "navbar-toggler",
-    attrs: {
-      type: "button",
-      "data-bs-toggle": "collapse",
-      "data-bs-target": "#navbarColor02",
-      "aria-controls": "navbarColor02",
-      "aria-expanded": "false",
-      "aria-label": "Toggle navigation"
-    }
-  }, [_c("span", {
-    staticClass: "navbar-toggler-icon"
-  })]);
-}, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("a", {
