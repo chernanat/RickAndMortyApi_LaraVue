@@ -394,7 +394,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       })["catch"](function (err) {
         if (err.response.status == 500) {
-          Swal.fire('User Updated!', 'Email Cannot Be empty!', 'success');
+          Swal.fire('User Updated!', 'Email Cannot Be empty!', 'error');
         }
         console.log(err);
       });
