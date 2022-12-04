@@ -57,7 +57,7 @@ export default {
                 }
             }).catch(err=>{
                 if(err.response.status == 500){
-                    Swal.fire('User Updated!', 'Email Cannot Be empty!', 'error');
+                    Swal.fire('Error!', 'Email Cannot Be empty!', 'error');
                 }
                 console.log(err);
             })
