@@ -56,6 +56,9 @@ export default {
                     Swal.fire('User Updated!', '', 'success');
                 }
             }).catch(err=>{
+                if(err.response.status == 500){
+                    Swal.fire('User Updated!', 'Email Cannot Be empty!', 'success');
+                }
                 console.log(err);
             })
         }
