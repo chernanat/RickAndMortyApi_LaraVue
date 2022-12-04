@@ -55,11 +55,12 @@ export default {
                 }
             }
             ).catch(err => {
+                console.log(err);
                 if(err.response.status == 422){
                     Swal.fire('Ops!', err.response.data.message,'error')
                 }
                 if(err.response.status == 500){
-                    Swal.fire('Error!', 'This Email Already Exists!!!','error')
+                    Swal.fire('Error!', err.response.data.message,'error')
                 }            
             });
         },
