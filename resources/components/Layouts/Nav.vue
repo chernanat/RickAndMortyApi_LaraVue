@@ -15,7 +15,7 @@
                     </button>
                 </div>
 
-                <div class="collapse navbar-collapse" id="navbarColor02">
+                <div id="navbarColor02">
                     <ul class="navbar-nav me-auto">
                         <li v-if="!auth.email" class="nav-item">
                             <a class="nav-link active" href="/register">Register

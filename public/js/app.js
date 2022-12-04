@@ -690,7 +690,6 @@ var render = function render() {
       href: "/"
     }
   }, [_vm._v("RickAndMortyApi")]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
-    staticClass: "collapse navbar-collapse",
     attrs: {
       id: "navbarColor02"
     }
