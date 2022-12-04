@@ -18,7 +18,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
     ];
@@ -30,7 +29,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     /**
@@ -38,7 +37,20 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
+    public $timestamps = false;
     protected $casts = [
-        'email_verified_at' => 'datetime',
+
     ];
+    public function setDateAttribute($value)
+    {
+        $this->attributes['birthdate'] = $value->format('Y-m-d');
+    }
+    protected function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+    public function favorite(){
+        return $this->hasMany(Favorite::class,'id_user');
+    }
+
 }

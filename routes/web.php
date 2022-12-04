@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\Favorite;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use PhpParser\Node\Expr\FuncCall;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,19 +19,31 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // });
 
-Route::group(['prefix'=>''],function(){
+Route::group(['prefix'=>'','controller'=>\App\Http\Controllers\FavoriteController::class],function(){
     Route::name('')->group(function(){
-        Route::get('/', function () {
-            return view('home');
-        });
-        Route::get('/characters', function () {
-            return view('characters');
-        });
-        Route::get('/episodes', function () {
-            return view('episodes');
-        });
-        Route::get('/locations', function () {
-            return view('locations');
-        });
+        Route::get('/favorite','saveFavorite')->name('');
+    });
+});
+
+
+Route::get('/prueba', function(){
+    return User::with('favorite')->get();
+});
+
+Route::group(['prefix'=>'','controller'=>\App\Http\Controllers\UserController::class],function(){
+    Route::name('')->group(function(){
+        Route::get('/','login')->name('');
+        Route::get('/register','register')->name('');
+        Route::post('/save','store')->name('');
+        Route::get('/home','index')->name('');
+        Route::get('/user/{person}','edit');
+        Route::post('/user/{person}','update');
+    });
+});
+
+Route::group(['prefix'=>'/sign','controller'=>\App\Http\Controllers\LoginController::class],function(){
+    Route::name('')->group(function(){
+        Route::post('/login','login')->name('');
+        Route::post('/logout','logout')->name('');
     });
 });

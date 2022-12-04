@@ -27,7 +27,12 @@
                         <h4 class="card-subtitle mb-2">Status: <b>{{character.status}}</b></h4>
                         <h4 class="card-subtitle mb-2">Gender: <b>{{character.gender}}</b></h4>
                         <h4 class="card-subtitle mb-2">Location: <b>{{character.location.name}}</b></h4>
+                        <div>
+                            <label for=""><b>Mark As Favorite!</b></label>
+                            <input type="checkbox" v-model="data_user" :value="{ id: character.id, user_id: Number(user.user_id) }" @click="markasFavorite()">
+                        </div>
                     </div>
+
                     <div class="text-center">   
                         <input @click="getEpisodes(character)" type="button" value="See Episodes" class="btn btn-success mt-2">
                     </div>
@@ -49,6 +54,7 @@
 import axios from 'axios';
 import NavVue from './Layouts/Nav.vue';
 import FooterVue from './Layouts/Footer.vue';
+import Auth from './helpers/auth'
 
 export default {
     components:{
@@ -70,11 +76,27 @@ export default {
             pagination:{
                 next: null,
                 previous: null
-            }
+            },
+            user:{
+                user_id: null
+            },
+            favorites: [],
+            data_user:[
+                {
+                    id: '',
+                    user_id: ''
+                }
+            ]
         }
     },
+    mounted(){
+    },  
     created(){
+        this.data_user = []
         this.getInfoRickAndMortyApi()    
+        Auth.initialize() 
+        this.user.user_id = Auth.data.id
+        this.logged()
     },
     methods:{
         async getInfoRickAndMortyApi(){
@@ -99,7 +121,6 @@ export default {
             this.episodes = character.episode;
             for (let i = 0; i < this.episodes.length; i++) {
                 await axios.get(this.episodes[i]).then(res=>{
-                    console.log('h');
                     this.episodes_api[i] = res.data
                 }).catch(err=>{
                     console.log(err);
@@ -116,6 +137,19 @@ export default {
         close(){
             this.episodes = null;
             this.episodes_api = [];
+        },
+        logged(){
+            if(this.user.user_id == null){
+                window.location.href = "/"
+            }
+        },
+        markasFavorite(){
+            axios.get(`/favorite`, this.data_user).then(res=>{
+                // Swal.fire('Added to Favorite!', '','success')
+                console.log(res.data);
+            }).catch(err=>{
+                console.log(err);
+            })
         }
     }
 }
