@@ -60,7 +60,7 @@ export default {
                     Swal.fire('Ops!', err.response.data.message,'error')
                 }
                 if(err.response.status == 500){
-                    Swal.fire('Error!', err.response.data.message,'error')
+                    Swal.fire('Error!', 'This Email Already exists!','error')
                 }            
             });
         },

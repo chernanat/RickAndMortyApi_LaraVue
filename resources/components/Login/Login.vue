@@ -55,7 +55,16 @@ export default {
                 window.location.href = "/home"
             }
             ).catch(err => {
-                Swal.fire(err.response.data.errors + '!','','error')
+                if(err.response.status == 422){
+                    if(err.response.data.logged == false){
+                        Swal.fire(err.response.data.errors,'','error')
+                    }else{
+                        Swal.fire(err.response.data.message,'','error')
+                    }
+                }
+                else{
+                    console.log(err);
+                }
             });
         },
         validateLogin(){
