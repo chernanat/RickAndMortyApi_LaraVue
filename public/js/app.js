@@ -286,7 +286,15 @@ __webpack_require__.r(__webpack_exports__);
         _helpers_auth_js__WEBPACK_IMPORTED_MODULE_0__["default"].set(_this.user.email, _this.user.name, res.data.user.id);
         window.location.href = "/home";
       })["catch"](function (err) {
-        Swal.fire(err.response.data.errors + '!', '', 'error');
+        if (err.response.status == 422) {
+          if (err.response.data.logged == false) {
+            Swal.fire(err.response.data.errors, '', 'error');
+          } else {
+            Swal.fire(err.response.data.message, '', 'error');
+          }
+        } else {
+          console.log(err);
+        }
       });
     },
     validateLogin: function validateLogin() {
@@ -348,7 +356,7 @@ __webpack_require__.r(__webpack_exports__);
           Swal.fire('Ops!', err.response.data.message, 'error');
         }
         if (err.response.status == 500) {
-          Swal.fire('Error!', err.response.data.message, 'error');
+          Swal.fire('Error!', 'This Email Already exists!', 'error');
         }
       });
     },
